@@ -8,9 +8,10 @@
 	    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="../css/simple-sidebar.css">
 	    <link rel="stylesheet" href="../css/Style.css">
+		<script src="../rutinas/angular-1.5.8/angular.min.js"></script>
 	    <title>B&#250;squeda#</title>
 	</head>
-	<body>
+	<body ng-app="myApp">
 	    <header>
 			<div class="container">
 
@@ -30,10 +31,10 @@
 							<a href="Quimico.php">Inicio</a>
 						</li>
 						<li>
-							<a href="Muestras.php">Ingresar</a>
+							<a href="MuestrasII.php">Ingresar</a>
 						</li>
 						<li>
-							<a href="Proceso.php">Proceso</a>
+							<a href="ProcesoII.php">Proceso</a>
 						</li>
 						<li>
 							<a href="BuscadorQ.php">B&#250;squeda</a>
