@@ -13,7 +13,7 @@
 	$resultado = $_REQUEST['resultado'];
 	$observ = $_REQUEST['observ'];
 	$fechaP = $_REQUEST['fechaP'];
-	$fechaI = $_REQUEST['fechaI'];
+	//$fechaI = $_REQUEST['fechaI'];
     //$ = $_REQUEST[''];
 	$reqlen = 	strlen($folio) * strlen($protocolo) * strlen($tipomuestra) *//registroDos
 	            strlen($nombre) * strlen($appaterno) * strlen($apmaterno) *//Quinico
@@ -54,8 +54,8 @@
 			}
 		
 		//registroDos  
-		$sql = "INSERT INTO registroDos (idregistroDos, folio, protocolo, tipomuestra, now(), quimico_idquimico, muestra_proc_idmuestra_proc) 
-		        VALUES (' ', '$folio', '$protocolo', '$tipomuestra', '$fechaI', '$id', '$id')";
+		$sql = "INSERT INTO registroDos (idregistroDos, folio, protocolo, tipomuestra, quimico_idquimico, muestra_proc_idmuestra_proc) 
+		        VALUES (' ', '$folio', '$protocolo', '$tipomuestra', '$id', '$id')";
 		if ($enlace->query($sql) === TRUE)
 			{
 				echo"Datos ingresados correctamente (Rejistro dos)." . "<br>";
@@ -67,6 +67,6 @@
 		/*Fin de RegistroUno*/	
 		mysqli_close($enlace);
 		clearstatcache();
-		//header("location:../vistas/ProcesoII.php");
+		header("location:../vistas/ProcesoII.php");
 	}
 ?>	

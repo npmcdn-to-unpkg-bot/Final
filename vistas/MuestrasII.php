@@ -61,7 +61,7 @@
 								    <div class="panel-body">
 									<!--for="input"   class="form-control" placeholder="" ng-model=""
 									id="input" type="" class="form-control" palceholder="" name="U" ng-model="" usuario. required-->
-									    <form class="form-horizontal" role="form" name="forma" method="post" action="../scripts/Captura.php" enctype="multipart/form-data">
+									    <form class="form-horizontal" role="form" name="forma_muestra_medica" method="post" action="../scripts/Captura.php" enctype="multipart/form-data">
 										    <div class="table-responsive">
 											    <table class="table table-condensed table-bordered">
 												    <tr>
