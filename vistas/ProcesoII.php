@@ -59,7 +59,7 @@
 										<h3 class="panel-title">Proceso</h3>
 									</div>
 									<div class="panel-body">
-										<form class="form-horizontal" role="form" name="forma_proceso" method="post"  action="../scripts/registrodos.php" enctype="multipart/form-data">
+										<form class="form-horizontal" role="form" name="forma" method="post"  action="../scripts/registrodos.php" enctype="multipart/form-data">
 											<table class="table table-condensed table-bordered">	
 												<tr>
 												    <th for="inputFolio de la muestra">Folio de la muestra</th>
@@ -138,6 +138,22 @@
 														<input type="button" class="btn btn-default" id="menu-toggle" value="Agrandar" href="#menu-toggle">
 													</th>
 											    </tr>
+												
+												<!--tr>
+													<th colspan="2">
+														<table class="table table-condensed">
+															<tr>
+																<th colspan="2">C&#243;digo</th>
+															</tr>
+															<tr>
+																<th>C&#243;digo</th>
+																<th>
+																	<input type="button" class="btn btn-default" type="name" name="codigoDos"value="Generar">
+																</th>
+															</tr>
+														</table>
+													</th>
+											    </tr-->
 											</table>
 										</form> 
 										<?php
@@ -149,6 +165,7 @@
 										?>
 									</div>
 								</div>
+								
 							</div>
 						</div>
 					</div>

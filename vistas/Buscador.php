@@ -11,7 +11,7 @@
 		<script src="../rutinas/angular-1.5.8/angular.min.js"></script>
 	    <title>B&#250;squeda#</title>
 	</head>
-	<body ng-app="myApp">
+	<body>
 	    <header>
 			<div class="container">
 
@@ -28,16 +28,16 @@
 							</a>
 						</li>
 						<li>
-							<a href="Quimico.php">Inicio</a>
+							<a href="">Inicio</a>
 						</li>
 						<li>
-							<a href="MuestrasII.php">Ingresar</a>
+							<a href="">Ingresar</a>
 						</li>
 						<li>
-							<a href="ProcesoII.php">Proceso</a>
+							<a href="">Proceso</a>
 						</li>
 						<li>
-							<a href="BuscadorQ.php">B&#250;squeda</a>
+							<a href="Buscador.php">B&#250;squeda</a>
 						</li>
 						<li>
 							<a href="">Copyright</a>
@@ -101,33 +101,51 @@
 														</li>
 													</ul>
 											  
-													<!--form class="form-horizontal"-->
-													<form class="navbar-form navbar-left" role="search" method="post" action="../scripts/Buscador.php" enctype="multipart/form-data">
+													<!--form class="form-horizontal"  method="post"  action="php/.php" enctype="multipart/form-data"-->
+													<form class="navbar-form navbar-left" role="search">
 														<div class="form-group">
-														  <input type="text" class="form-control" placeholder="Buscar" id="Buscar">
+														  <input type="text" class="form-control" placeholder="Buscar">
 														</div>
-														<button id="btnbuscar" class="btn btn-default">Buscar</button>
-														<div id="resultado">
-		                                                </div>
+														<button type="submit" class="btn btn-default">Enviar</button>
 												    </form>
 											        
 													<?php
 														if(isset($_POST['submit']))
 														{
-															require("../scripts/Buscador.php");
+															require("");
 														}
 														clearstatcache();
 													?>
+													
 													<ul class="nav navbar-nav navbar-right">
 														<li>
 														    <a class="btn" id="menu-toggle" href="#menu-toggle">Agrandar</a>
+														</li>
+														<li class="dropdown">
+														    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+															    Menú #2 <b class="caret">
+																
+															
+																
+																
+																</b>
+														    </a>
+															<ul class="dropdown-menu">
+																<li><a href="#">Acción #1</a></li>
+																<li><a href="#">Acción #2</a></li>
+																<li><a href="#">Acción #3</a></li>
+																<li class="divider"></li>
+																<li><a href="#">Acción #4</a></li>
+															</ul>
 														</li>
 													</ul>
 												</div>
 											</nav>
 										</div>
+										
 									</div>
 								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -135,7 +153,7 @@
 				<footer>
 					<div class="container">
 					<p><h3></h3></p>
-					<p><h3>Copyright</h3></p><a style="color:#FFF;"></a>
+					<p><h3></h3></p><a style="color:#FFF;"></a>
 					</div>
 				</footer>
 				<!-- /#page-content-wrapper -->
@@ -151,16 +169,6 @@
 				e.preventDefault();
 				$("#wrapper").toggleClass("toggled");
 			});
-		</script>
-		<script>
-		$().ready(function(){
-		   $("#btnbuscar").click(function(){
-		     var criterio=$("#Buscar").val();
-			 $.get("../scripts/Buscador.php","dato="+criterio,function(resultado){
-			    $("#resultado").html(resultado);
-			 });
-		   }); 
-		});
 		</script>
 	</body>
 </html>

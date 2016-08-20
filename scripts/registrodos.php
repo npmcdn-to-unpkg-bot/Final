@@ -13,7 +13,7 @@
 	$resultado = $_REQUEST['resultado'];
 	$observ = $_REQUEST['observ'];
 	$fechaP = $_REQUEST['fechaP'];
-	//$fechaI = $_REQUEST['fechaI'];
+	$fechaI = "now()";
     //$ = $_REQUEST[''];
 	$reqlen = 	strlen($folio) * strlen($protocolo) * strlen($tipomuestra) *//registroDos
 	            strlen($nombre) * strlen($appaterno) * strlen($apmaterno) *//Quinico
@@ -31,7 +31,7 @@
 		//quìmico
 		$sql = "INSERT INTO quimico (idquimico, nombre, appaterno, apmaterno)
 				VALUES (' ', '$nombre', '$appaterno', '$apmaterno' )";
-		if ($enlace->query($sql) === TRUE)
+		if ($enlace->query($sql) === TRUE)//validando entrada
 			{
 				echo"Datos ingresados correctamente (Quìmico)." . "<br>";
 				$id=$enlace->insert_id;//para saber la pK insertadad en la tabla 
@@ -43,7 +43,7 @@
 		//proceso de la muestra 
 		$sql = "INSERT INTO muestra_proc(idmuestra_proc, ensayo, resultado, observ, fechaP)
 				VALUES (' ', '$ensayo', '$resultado', '$observ', '$fechaP')";
-		if ($enlace->query($sql) === TRUE)
+		if ($enlace->query($sql) === TRUE)//validando entrada
 			{
 				echo"Datos ingresados correctamente (Proceso de la muestra )." . "<br>";
 				$id=$enlace->insert_id;//para saber la pK insertadad en la tabla 
@@ -54,9 +54,9 @@
 			}
 		
 		//registroDos  
-		$sql = "INSERT INTO registroDos (idregistroDos, folio, protocolo, tipomuestra, quimico_idquimico, muestra_proc_idmuestra_proc) 
-		        VALUES (' ', '$folio', '$protocolo', '$tipomuestra', '$id', '$id')";
-		if ($enlace->query($sql) === TRUE)
+		$sql = "INSERT INTO registroDos (idregistroDos, folio, protocolo, tipomuestra, now(), quimico_idquimico, muestra_proc_idmuestra_proc) 
+		        VALUES (' ', '$folio', '$protocolo', '$tipomuestra', '$fechaI', '$id', '$id')";
+		if ($enlace->query($sql) === TRUE)//validando entrada
 			{
 				echo"Datos ingresados correctamente (Rejistro dos)." . "<br>";
 			}
@@ -67,6 +67,6 @@
 		/*Fin de RegistroUno*/	
 		mysqli_close($enlace);
 		clearstatcache();
-		header("location:../vistas/ProcesoII.php");
+		//header("location:../vistas/ProcesoII.php");
 	}
 ?>	
