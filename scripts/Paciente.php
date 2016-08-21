@@ -28,10 +28,10 @@
 				die('Error de Conexión (' . mysqli_connect_errno() . ') ' . mysqli_connect_error());
 			}
 		//inserciòn del archivo
-		if(is_uploaded_file($_FILES['nombre_archivo_cliente']['tmp_name']))
+		if(is_uploaded_file($_FILES['nombre_del_archivo']['tmp_name']))
 		{
-			$directorio="archivos suvidos";
-			$nombreFichero = $_FILES['nombre_archivo_cliente']['name'];
+			$directorio="/archivos suvidos";
+			$nombreFichero = $_FILES['nombre_del_archivo']['name'];
 			$nombreCompleto = $directorio . $nombreFichero;
 			if (is_file($nombreCompleto))
 			{
@@ -39,7 +39,7 @@
 				$nombreFichero = $idUnico . "-" . $nombreFichero;
 				echo"El fichero fue subido exitosamente." . "<br>";
 			}
-			move_uploaded_file($_FILES['nombre_archivo_cliente']['tmp_name'], $directorio.$nombreFichero);
+			move_uploaded_file($_FILES['nombre_del_archivo']['tmp_name'], $directorio.$nombreFichero);
 		}
 		else
 		{

@@ -118,7 +118,7 @@
 															    <table class="table table-hover table-condensed table-bordered">
 																	<tr>
 																		<th colspan="3" for="inputAdjuntar archivo">Adjuntar archivo
-																		    <input id="inputAdjuntar archivo" class="form-control" ng-model="nombreFichero" required type="file" name="nombreFichero"/></br>
+																		    <input id="inputAdjuntar archivo" class="form-control" ng-model="nombre_del_archivo" required type="file" name="nombre_del_archivo"/></br>
 																		</th>
 																	</tr> 
 																</table>
