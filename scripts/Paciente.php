@@ -9,18 +9,17 @@
     $sexo = $_POST['sexo'];
 	//tiempo
     $edad = $_POST['edad'];
-    $tiempo = $_POST['tiempo'];
-	//acchivo a subir
-    $nombre_archivo_cliente = $_POST['nombre_archivo_cliente'];
-    $nombreFichero= $_POST['nombreFichero'];
+    $tiempoV = $_POST['tiempoV'];/*Tiempo de vida*/
 	//medico
-	$nombre = $_POST['nombre'];
-    $appaterno = $_POST['appaterno'];
-    $apmaterno = $_POST['apmaterno'];
+	$nombreMD = $_POST['nombreMD'];
+    $appaternoMD = $_POST['appaternoMD'];
+    $apmaternoMD = $_POST['apmaternoMD'];
     $matricula = $_POST['matricula'];
-	$reqlen = /*paciente*/strlen($nombre) * strlen($appaterno) * strlen($apmaterno) * strlen($nacimiento) * strlen($nombreFichero) * 
-			  strlen($numero) * strlen($edad) * strlen($tiempo) * strlen($sexo)/*paciente*/ * strlen($nombre_archivo_cliente) *
-		      /*medico*/ strlen($nombre) * strlen($appaterno)* strlen($apmaterno)* strlen($matricula)/*medico*/;
+	//Fichero
+	$nombreFichero = ' ';
+	$reqlen = /*paciente*/strlen($nombre) * strlen($appaterno) * strlen($apmaterno) * strlen($nacimiento) *
+			  strlen($numero) * strlen($edad) * strlen($tiempoV) * strlen($sexo)/*paciente*/ * 
+		      /*medico*/ strlen($nombreMD) * strlen($appaternoMD)* strlen($apmaternoMD)* strlen($matricula)/*medico*/;
 	if($reqlen > 0)
     {
 		$enlace = mysqli_connect('localhost', 'root', '', 'laboratorio');
@@ -31,33 +30,24 @@
 		//inserciòn del archivo
 		if(is_uploaded_file($_FILES['nombre_archivo_cliente']['tmp_name']))
 		{
-			$directorio="archivos suvidos/";
+			$directorio="archivos suvidos";
 			$nombreFichero = $_FILES['nombre_archivo_cliente']['name'];
-			$nombreCompleto = $nombreDirectorio . $nombreFichero;
-		}
-		
-		
-		
-		
-		if (is_uploaded_file($_FILES['nombre_archivo_cliente']['tmp_name']))
-		{
-			$nombreDirectorio = "/directorio_archivos_movidos";
-			$nombreFichero = $_FILES['nombre_archivo_cliente']['name'];
-			$nombreCompleto = $nombreDirectorio . $nombreFichero;
+			$nombreCompleto = $directorio . $nombreFichero;
 			if (is_file($nombreCompleto))
 			{
 				$idUnico = time();
 				$nombreFichero = $idUnico . "-" . $nombreFichero;
+				echo"El fichero fue subido exitosamente." . "<br>";
 			}
-			move_uploaded_file($_FILES['nombre_archivo_cliente']['tmp_name'], $nombreDirectorio.$nombreFichero);
+			move_uploaded_file($_FILES['nombre_archivo_cliente']['tmp_name'], $directorio.$nombreFichero);
 		}
 		else
 		{
-			print ("No se ha podido subir el fichero");
+			print ("No se ha podido subir el fichero" . "<br>");
 		}
 		//tiempo del paciente
-			$sql = "INSERT INTO Tiempo (idTiempo, edad, tiempo)
-					VALUES (' ', , '$edad', '$tiempo')";
+			$sql = "INSERT INTO Tiempo (idTiempo, edad, tiempoV)
+					VALUES (' ',  '$edad', '$tiempoV')";
 			if($enlace->query($sql) === TRUE)
 			{
 				echo"Datos ingresados correctamente (Tiempo)." . "<br>";
@@ -68,7 +58,7 @@
 				echo"Problema al insertar los datos." . $sql . "<br>" . $enlace->error;
 			}
 		//insercion del paciente
-			$sql = "INSERT INTO paciente (idpaciente, nombre, appaterno, apmaterno, nacimiento, numero, sexo Tiempo_idTiempo)
+			$sql = "INSERT INTO paciente (idpaciente, nombre, appaterno, apmaterno, nacimiento, numero, sexo, Tiempo_idTiempo)
                     VALUES (' ', '$nombre', '$appaterno', '$apmaterno', '$nacimiento', '$numero', '$sexo', '$id')";
 			if($enlace->query($sql) === TRUE)//validando entrada
 			{
@@ -80,8 +70,8 @@
 				echo"Problema al insertar los datos." . $sql . "<br>" . $enlace->error;
 			}	
 		//insercion del médico
-			$sql = "INSERT INTO medico (idmedico, nombre, appaterno, apmaterno, clave)
-                    VALUES (' ', '$nombre', '$appaterno', '$apmaterno', '$matricula')";
+			$sql = "INSERT INTO medico (idmedico, nombreMD, appaternoMD, apmaternoMD, matricula)
+                    VALUES (' ', '$nombreMD', '$appaternoMD', '$apmaternoMD', '$matricula')";
 			if($enlace->query($sql) === TRUE)//validando entrada
 			{
 				echo"Datos ingresados correctamente (Medico)." . "<br>";

@@ -43,7 +43,6 @@
 						<li>
 							<a href=""></a>
 						</li>
-						
 					</ul>
 				</div>
 				<!-- /#sidebar-wrapper -->
@@ -57,7 +56,7 @@
 										<h3 class="panel-title">Historial m&#233;dico</h3>
 									</div>
 									<div class="panel-body">
-										<form class="form-horizontal" role="form" name="forma_histori_clinica" method="post"  action="../scripts/Paciente.php" enctype="multipart/form-data">
+										<form class="form-horizontal" role="form" name="forma_histori_clinica" method="post" action="../scripts/Paciente.php" enctype="multipart/form-data">
 											<div id="accordion">
 											    <div id="accordion-1"><h3>Paciente</h3>
 												    <table class="table table-hover table-condensed table-bordered">
@@ -65,7 +64,6 @@
 														    <th for="inputNombre">Nombre</th>
 														    <th for="inputApellido paterno">Apellido paterno</th>
 														    <th for="inputApellido materno">Apellido materno</th>
-														    
 													    </tr>
 														<!--id="input" type="" required name="" class="form-control" placeholder="" ng-model=""-->
 														<tr><!--renglon uno-->
@@ -77,8 +75,22 @@
 														<tr><!--renlon dos-->
 														    <th for="inputN&#250;mero de expedinte">N&#250;mero de expedinte</th>
 															<th for="inputFecha de nacimiento" >Fecha de nacimiento</th>
-															<th rowspan="2" for="inputEdad">Edad
-															    <table class="table table-hover table-condensed table-bordered">
+															<th rowspan="2">
+																<table class="table table-condensed">
+																	<tr>
+																		<th for="inputEdad">Edad</th>
+																		<th for="inputTiempo">Tiempo</th>
+																	</tr>
+																	<tr>
+																		<th>
+																			<input id="inputEdad" class="form-control" placeholder="Edad" ng-model="edad" required type="text" name="edad"/>
+																		</th>
+																		<th>
+																			<input id="inputTiempo" class="form-control" placeholder="(dia´s, mes(es) o a&#241;o´s)" ng-model="tiempoV" required type="text" name="tiempoV"/>																				
+																		</th>
+																	</tr>
+																</table>
+															    <!--table class="table table-hover table-condensed table-bordered">
 																	<tr>
 																		<th><input id="inputEdad" class="form-control" placeholder="Edad" ng-model="edad" required type="text" name="edad"/></th>
 																		<th for="inputTiempo">
@@ -91,38 +103,22 @@
 																			</select>
 																		</th>
 																	</tr>
-																</table>
+																</table-->
 															</th>
 														</tr>
-														<!--tr>
-															<th colspan="2">
-																<table class="table table-condensed">
-																	<tr>
-																		<th colspan="2">C&#243;digo</th>
-																	</tr>
-																	<tr>
-																		<th>C&#243;digo</th>
-																		<th>
-																			<input type="button" class="btn btn-default" type="name" name="codigoDos"value="Generar">
-																		</th>
-																	</tr>
-																</table>
-															</th>
-														</tr-->
 														<tr><!--renlon tres-->
-														<th><input id="inputN&#250;mero de expedinte" class="form-control" placeholder="N&#250;mero de expedinte" ng-model="numero" required type="text" name="numero"/></th>
+														    <th><input id="inputN&#250;mero de expedinte" class="form-control" placeholder="N&#250;mero de expedinte" ng-model="numero" required type="text" name="numero"/></th>
 															<th>
 															    <label label for="date"></label>
 																<input id="inputFecha de nacimiento" class="form-control" ng-model="nacimiento" required id="date" type="date" name="nacimiento"> 
 															</th>
 														</tr>
-														
 														<tr>
 														    <th colspan="2">
 															    <table class="table table-hover table-condensed table-bordered">
 																	<tr>
 																		<th colspan="3" for="inputAdjuntar archivo">Adjuntar archivo
-																		    <input id="inputAdjuntar archivo" class="form-control" ng-model="nombre_archivo_cliente" required type="file" name="nombre_archivo_cliente"/></br>
+																		    <input id="inputAdjuntar archivo" class="form-control" ng-model="nombreFichero" required type="file" name="nombreFichero"/></br>
 																		</th>
 																	</tr> 
 																</table>
@@ -149,9 +145,9 @@
 															<th for="inputMatr&#237;cula">Matr&#237;cula</th>
 														</tr>
 														<tr>
-															<th><input id="inputNombre" class="form-control" placeholder="Nombre" name="nombreU" ng-model="nombre" required type="text" name="nombre"/></th>
-															<th><input id="inputApellido paterno" class="form-control" placeholder="Apellido paterno" ng-model="appaterno" required type="text" name="appaterno"/></th>
-															<th><input id="inputApellido materno" class="form-control" placeholder="Apellido materno" ng-model="apmaterno" required type="text" name="apmaterno" /></th>
+															<th><input id="inputNombre" class="form-control" placeholder="Nombre" ng-model="nombreMD" required type="text" name="nombreMD"/></th>
+															<th><input id="inputApellido paterno" class="form-control" placeholder="Apellido paterno" ng-model="appaternoMD" required type="text" name="appaternoMD"/></th>
+															<th><input id="inputApellido materno" class="form-control" placeholder="Apellido materno" ng-model="apmaternoMD" required type="text" name="apmaternoMD" /></th>
 															<th><input id="inputMatr&#237;cula" class="form-control" placeholder="Matr&#237;cula" ng-model="matricula" required type="text" name="matricula"/></th>
 														</tr>
 														<tr> 
@@ -206,19 +202,18 @@
 		<script src="../js/jquery.js"></script>
 		<!-- Bootstrap Core JavaScript -->
 		<script src="../js/bootstrap.min.js"></script>
-		<!-- Menu Toggle Script -->
 		<script>
+		<!-- Menu Toggle Script -->
 			$("#menu-toggle").click(function(e) {
 				e.preventDefault();
-				$("#wrapper").toggleClass("toggled");
+				$("#wrapper").toggleClass("toggled");	
 			});
 			$(function(){//acordion
 				$( "#accordion" ).accordion({
 					collapsible:true
 				});
 			});
-		</script>
-		<script>//select y opciones
+		//select y opciones
 			var app = angular.module('myApp', []);
 			app.controller('myCtrl', function($scope) {
 				$scope.names = ["Masculino", "Femenino"];
