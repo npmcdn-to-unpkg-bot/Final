@@ -65,7 +65,6 @@
 														    <th for="inputApellido paterno">Apellido paterno</th>
 														    <th for="inputApellido materno">Apellido materno</th>
 													    </tr>
-														<!--id="input" type="" required name="" class="form-control" placeholder="" ng-model=""-->
 														<tr><!--renglon uno-->
 															<th><input id="inputNombre" class="form-control" placeholder="Nombre" ng-model="nombre" required type="text" name="nombre"/></th>
 															<th><input id="inputApellido paterno" class="form-control" placeholder="Apellido paterno" ng-model="appaterno" required type="text" name="appaterno"/></th>
@@ -90,20 +89,6 @@
 																		</th>
 																	</tr>
 																</table>
-															    <!--table class="table table-hover table-condensed table-bordered">
-																	<tr>
-																		<th><input id="inputEdad" class="form-control" placeholder="Edad" ng-model="edad" required type="text" name="edad"/></th>
-																		<th for="inputTiempo">
-																			<select class="form-control" ng-model="tiempo" required type="text" name="tiempo">
-																				<option value="">Tiempo</option>
-																				<option value="Dias">Dias</option>
-																				<option value="Semanas">Semanas</option>
-																				<option value="Meses">Meses</option>
-																				<option value="Años">A&#241;os</option>
-																			</select>
-																		</th>
-																	</tr>
-																</table-->
 															</th>
 														</tr>
 														<tr><!--renlon tres-->
@@ -117,8 +102,8 @@
 														    <th colspan="2">
 															    <table class="table table-hover table-condensed table-bordered">
 																	<tr>
-																		<th colspan="3" for="inputAdjuntar archivo">Adjuntar archivo
-																		    <input id="inputAdjuntar archivo" class="form-control" ng-model="nombre_del_archivo" required type="file" name="nombre_del_archivo"/></br>
+																		<th colspan="3">Adjuntar archivo
+																		    <input id="Adjuntar_archivo" class="form-control" ng-model="archivo_fls" required type="file" name="archivo_fls"/></br>
 																		</th>
 																	</tr> 
 																</table>
@@ -164,7 +149,7 @@
 														</tr>
 														<tr>
 															<th colspan="4">
-																<input class="btn btn-default" type="submit" value="Ingresar">
+																<input class="btn btn-default" type="submit" name="" value="Ingresar">
 																<input class="btn btn-default" type="reset" value="Limpiar">
 																<input type="button" class="btn btn-default" id="menu-toggle" value="Agrandar" href="#menu-toggle">
 															</th>

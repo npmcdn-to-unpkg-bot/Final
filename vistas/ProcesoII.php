@@ -59,7 +59,7 @@
 										<h3 class="panel-title">Proceso</h3>
 									</div>
 									<div class="panel-body">
-										<form class="form-horizontal" role="form" name="forma" method="post"  action="../scripts/registrodos.php" enctype="multipart/form-data">
+										<form class="form-horizontal" role="form" name="forma_proceso_de_la_muestra" method="post"  action="../scripts/registrodos.php">
 											<table class="table table-condensed table-bordered">	
 												<tr>
 												    <th for="inputFolio de la muestra">Folio de la muestra</th>

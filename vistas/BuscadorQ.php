@@ -102,7 +102,7 @@
 													</ul>
 											  
 													<!--form class="form-horizontal"-->
-													<form class="navbar-form navbar-left" role="search" method="post" action="../scripts/Buscador.php" enctype="multipart/form-data">
+													<form class="navbar-form navbar-left" role="search" method="post" action="../scripts/Buscador.php">
 														<div class="form-group">
 														  <input type="text" class="form-control" placeholder="Buscar" id="Buscar">
 														</div>
