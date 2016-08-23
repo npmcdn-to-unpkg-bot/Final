@@ -1,5 +1,5 @@
 <?php 
-   
+   //Historia Clinica del paciente
     //paciente
 	$nombre = $_POST['nombre'];
     $appaterno = $_POST['appaterno'];
@@ -15,8 +15,7 @@
     $appaternoMD = $_POST['appaternoMD'];
     $apmaternoMD = $_POST['apmaternoMD'];
     $matricula = $_POST['matricula'];
-	//Fichero
-	$nombreFichero = ' ';
+	
 	$reqlen = /*paciente*/strlen($nombre) * strlen($appaterno) * strlen($apmaterno) * strlen($nacimiento) *
 			  strlen($numero) * strlen($edad) * strlen($tiempoV) * strlen($sexo)/*paciente*/ * 
 		      /*medico*/ strlen($nombreMD) * strlen($appaternoMD)* strlen($apmaternoMD)* strlen($matricula)/*medico*/;
@@ -27,24 +26,26 @@
 			{
 				die('Error de Conexión (' . mysqli_connect_errno() . ') ' . mysqli_connect_error());
 			}
-		//inserciòn del archivo
-		if(is_uploaded_file($_FILES['nombre_del_archivo']['tmp_name']))
-		{
-			$directorio="/archivos suvidos";
-			$nombreFichero = $_FILES['nombre_del_archivo']['name'];
-			$nombreCompleto = $directorio . $nombreFichero;
-			if (is_file($nombreCompleto))
+	//Bloque del archivo
+		//inserciòn del archivo y comprovaciòn
+			/*foreach($_FILES["archivo"] as $clave => $valor)  
 			{
-				$idUnico = time();
-				$nombreFichero = $idUnico . "-" . $nombreFichero;
-				echo"El fichero fue subido exitosamente." . "<br>";
-			}
-			move_uploaded_file($_FILES['nombre_del_archivo']['tmp_name'], $directorio.$nombreFichero);
-		}
-		else
-		{
-			print ("No se ha podido subir el fichero" . "<br>");
-		}
+				echo "Propiedad: $clave --- Valor: $valor<br/>";
+			}*/
+			
+		// archivo temporal (ruta y nombre).
+			$binario_nombre_temporal=$_FILES['archivo']['tmp_name'] ;
+		// leer del archvio temporal .. el binario subido.
+			$binario_contenido = addslashes(fread(fopen($binario_nombre_temporal, "rb"), filesize($binario_nombre_temporal)));
+			
+		// Obtener del array FILES (superglobal) los datos del binario .. nombre, tamaño y tipo.
+			$binario_nombre=$_FILES['archivo']['name'];
+			$binario_peso=$_FILES['archivo']['size'];
+			$binario_tipo=$_FILES['archivo']['type'];
+		// movemos el archivo a la capeta de nuestro servidor
+			move_uploaded_file($_FILES['archivo']['tmp_name'],"../Archivos/" . $_FILES['archivo']['name']);
+			
+	//Bloque del archivo		
 		//tiempo del paciente
 			$sql = "INSERT INTO Tiempo (idTiempo, edad, tiempoV)
 					VALUES (' ',  '$edad', '$tiempoV')";
@@ -81,9 +82,22 @@
 			{
 				echo"Problema al insertar los datos." . $sql . "<br>" . $enlace->error;
 			}
+		//Insertar archivo
+		    
+		    $query = "INSERT INTO archivos (id, archivo_binario, archivo_nombre, archivo_peso, archivo_tipo)
+				    VALUES (' ', '$binario_contenido', '$binario_nombre', '$binario_peso', '$binario_tipo')";
+			if($enlace->query($sql) === TRUE)//validando entrada
+			{
+				echo"El archivo medico insertado." . "<br>";
+				$id=$enlace->insert_id;//para saber la pK insertadad en la tabla 
+			}
+			else
+			{
+				echo"Problema al insertar los datos." . $sql . "<br>" . $enlace->error;
+			}
         //tabla Hitoria clinica completa     
-            $sql = "INSERT INTO Hclinica (idHclinica, nombreFichero, medico_idmedico, paciente_idpaciente)
-					VALUES (' ', '$nombreFichero', '$id', '$id')";
+            $sql = "INSERT INTO Hclinica (idHclinica,  medico_idmedico, paciente_idpaciente, archivos_idarchivos)
+					VALUES (' ', '$id', '$id', '$id')";
 			if($enlace->query($sql) === TRUE)//validando entrada
 			{
 				echo"Datos ingresados correctamente (Hitoria clinica completa)." . "<br>";

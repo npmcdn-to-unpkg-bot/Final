@@ -103,7 +103,7 @@
 															    <table class="table table-hover table-condensed table-bordered">
 																	<tr>
 																		<th colspan="3">Adjuntar archivo
-																		    <input id="Adjuntar_archivo" class="form-control" ng-model="archivo_fls" required type="file" name="archivo_fls"/></br>
+																		    <input id="Adjuntar_archivo" class="form-control" ng-model="archivo_fls" required type="file" name="archivo"/></br>
 																		</th>
 																	</tr> 
 																</table>
